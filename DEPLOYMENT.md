@@ -50,6 +50,7 @@ git push -u origin main
 5. Add Environment Variables:
    - `SECRET_KEY`: Generate a secure random string (you can use: `openssl rand -hex 32`)
    - `DATABASE_URL`: Will be provided after creating database (see step 6)
+   - `FRONTEND_URL`: Your Vercel frontend URL (e.g., `https://your-app.vercel.app`) - Optional, defaults to allow all origins
 
 6. Create PostgreSQL Database:
    - Click "New +" → "PostgreSQL"

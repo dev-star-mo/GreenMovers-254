@@ -25,9 +25,13 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Forest Protection IoT Dashboard API")
 
 # CORS configuration
+# Get frontend URL from environment variable, default to allow all for development
+FRONTEND_URL = os.getenv("FRONTEND_URL", "*")
+cors_origins = ["*"] if FRONTEND_URL == "*" else [FRONTEND_URL, "https://*.vercel.app"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify your frontend URL
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -284,6 +288,13 @@ async def get_dashboard_overview(db: Session = Depends(get_db), current_user: Us
     }
 
 @app.get("/")
+@app.head("/")
 async def root():
-    return {"message": "Forest Protection IoT Dashboard API"}
+    return {"message": "Forest Protection IoT Dashboard API", "status": "ok"}
+
+@app.get("/health")
+@app.head("/health")
+async def health_check():
+    """Health check endpoint for Render and other monitoring services"""
+    return {"status": "healthy", "service": "Forest Protection IoT Dashboard API"}
 

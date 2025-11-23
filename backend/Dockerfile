@@ -26,6 +26,7 @@ RUN mkdir -p uploads
 EXPOSE 8000
 
 # Use environment variable for port (Render requirement)
-CMD uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}
+# Render sets PORT automatically, but we use 8000 as fallback
+CMD uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000} --workers 1
 
 

@@ -44,4 +44,6 @@ Thumbs.db
 uploads/
 backend/uploads/
 
-
+# Cursor
+.cursorignore
+.cursorindexingignore

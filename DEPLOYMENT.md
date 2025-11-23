@@ -37,6 +37,7 @@ git push -u origin main
 4. Configure the service:
    - **Name**: `forest-protection-api`
    - **Environment**: `Python 3`
+   - **Python Version**: `3.11` (IMPORTANT: Set this in Render dashboard to avoid Pillow build issues)
    - **Build Command**: `pip install -r requirements.txt`
    - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
    - **Root Directory**: `backend`
@@ -127,6 +128,7 @@ Replace `{{msg.sensor_id}}` and `{{msg.sensor_name}}` with the actual fields fro
 
 ### Backend Issues
 
+- **Pillow build errors**: Ensure Python version is set to 3.11 in Render dashboard (not 3.13)
 - **Database connection errors**: Ensure `DATABASE_URL` is correctly set
 - **CORS errors**: Update CORS origins in `main.py`
 - **Port errors**: Render automatically sets `$PORT`, ensure your start command uses it

@@ -2,6 +2,8 @@
 
 A comprehensive dashboard for monitoring acoustic IoT sensors deployed in forests to combat illegal logging. The system receives alerts from ESP32 devices via LoRaWAN through ChirpStack and Node-RED.
 
+This is the project repo for the Wangari Maathai Foundation hackathon.
+
 ## Features
 
 - **User Authentication**: Login and signup system for forest rangers and environmental protection NGOs
@@ -125,12 +127,13 @@ The frontend will be available at `http://localhost:3000`
 1. Create a new account on [Render](https://render.com)
 2. Create a new Web Service
 3. Connect your GitHub repository
-4. Set build command: `pip install -r requirements.txt`
-5. Set start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-6. Add environment variables:
+4. **Important**: Set Python version to 3.11 in Render dashboard settings
+5. Set build command: `pip install -r requirements.txt`
+6. Set start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+7. Add environment variables:
    - `SECRET_KEY`: Generate a secure random key
    - `DATABASE_URL`: Render will provide this if you create a PostgreSQL database
-7. Deploy
+8. Deploy
 
 ### Frontend (Vercel)
 
@@ -171,5 +174,3 @@ The sensor_id, sensor_name, and alert_time should be extracted from your LoRaWAN
 ## License
 
 This project is developed for forest protection and environmental conservation purposes.
-
-

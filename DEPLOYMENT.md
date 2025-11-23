@@ -36,15 +36,16 @@ git push -u origin main
 
 4. Configure the service:
    - **Name**: `forest-protection-api`
+   - **Root Directory**: `backend` (IMPORTANT: Set this first)
    - **Environment**: `Docker` (Recommended) OR `Python 3`
    - **If using Docker**: 
      - Select "Docker" as the environment
-     - Dockerfile path: `backend/Dockerfile`
+     - **Dockerfile Path**: `Dockerfile` (NOT `backend/Dockerfile` since root is already `backend`)
+     - **Docker Context**: Leave empty or set to `.`
    - **If using Python Buildpacks**:
      - **Python Version**: `3.11` (CRITICAL: Must be 3.11, not 3.13)
      - **Build Command**: `pip install --upgrade pip && pip install -r requirements.txt`
      - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-   - **Root Directory**: `backend`
 
 5. Add Environment Variables:
    - `SECRET_KEY`: Generate a secure random string (you can use: `openssl rand -hex 32`)

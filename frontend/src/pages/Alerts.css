@@ -1,0 +1,145 @@
+.alerts-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e7e34 100%);
+}
+
+.alerts-content {
+  padding: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.alerts-content h1 {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.alerts-section {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.alerts-section h2 {
+  color: #1e7e34;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.alerts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.alert-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  border-left: 4px solid;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.alert-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.alert-card.unresolved {
+  border-left-color: #dc3545;
+}
+
+.alert-card.resolved {
+  border-left-color: #28a745;
+}
+
+.alert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.alert-id {
+  font-weight: bold;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.alert-status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.unresolved-badge {
+  background: #fee;
+  color: #c33;
+}
+
+.resolved-badge {
+  background: #d4edda;
+  color: #155724;
+}
+
+.alert-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.alert-details p {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.alert-details strong {
+  color: #333;
+}
+
+.resolve-button {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, #1e7e34 0%, #2d5a3d 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.resolve-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 126, 52, 0.3);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .alerts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .alerts-content h1 {
+    font-size: 2rem;
+  }
+}
+
+

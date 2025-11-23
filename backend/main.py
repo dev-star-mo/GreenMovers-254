@@ -27,14 +27,24 @@ app = FastAPI(title="Forest Protection IoT Dashboard API")
 # CORS configuration
 # Get frontend URL from environment variable, default to allow all for development
 FRONTEND_URL = os.getenv("FRONTEND_URL", "*")
-cors_origins = ["*"] if FRONTEND_URL == "*" else [FRONTEND_URL, "https://*.vercel.app"]
+
+# Build CORS origins list
+if FRONTEND_URL == "*":
+    cors_origins = ["*"]
+else:
+    # Allow specific frontend URL and all Vercel apps
+    cors_origins = [FRONTEND_URL]
+    # Also allow common Vercel patterns
+    if "vercel.app" in FRONTEND_URL:
+        cors_origins.append("https://*.vercel.app")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=cors_origins,
+    allow_origins=cors_origins if FRONTEND_URL != "*" else ["*"],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 # Security

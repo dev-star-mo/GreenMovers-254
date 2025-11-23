@@ -51,7 +51,19 @@ function Signup() {
       await login(formData.username, formData.password)
       navigate('/dashboard')
     } catch (err) {
-      setError(err.response?.data?.detail || 'Signup failed. Please try again.')
+      console.error('Signup error details:', err)
+      // Better error handling
+      if (err.response) {
+        // Server responded with error
+        const errorDetail = err.response.data?.detail || err.response.data?.message || 'Signup failed'
+        setError(errorDetail)
+      } else if (err.request) {
+        // Request was made but no response received
+        setError('Cannot connect to server. Please check your internet connection and try again.')
+      } else {
+        // Something else happened
+        setError(err.message || 'Signup failed. Please try again.')
+      }
     } finally {
       setLoading(false)
     }

@@ -30,25 +30,40 @@ export function AuthProvider({ children }) {
   }
 
   const login = async (username, password) => {
-    const formData = new FormData()
-    formData.append('username', username)
-    formData.append('password', password)
-    
-    const response = await api.post('/api/auth/login', formData, {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    })
-    
-    const token = response.data.access_token
-    localStorage.setItem('token', token)
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-    
-    await fetchUser()
-    return response.data
+    try {
+      const formData = new FormData()
+      formData.append('username', username)
+      formData.append('password', password)
+      
+      const response = await api.post('/api/auth/login', formData, {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      })
+      
+      const token = response.data.access_token
+      localStorage.setItem('token', token)
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+      
+      await fetchUser()
+      return response.data
+    } catch (error) {
+      // Log the full error for debugging
+      console.error('Login error:', error)
+      console.error('Error response:', error.response)
+      throw error
+    }
   }
 
   const signup = async (userData) => {
-    const response = await api.post('/api/auth/register', userData)
-    return response.data
+    try {
+      const response = await api.post('/api/auth/register', userData)
+      return response.data
+    } catch (error) {
+      // Log the full error for debugging
+      console.error('Signup error:', error)
+      console.error('Error response:', error.response)
+      // Re-throw with more details
+      throw error
+    }
   }
 
   const logout = () => {

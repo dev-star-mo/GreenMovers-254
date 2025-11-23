@@ -2,7 +2,7 @@ services:
   - type: web
     name: forest-protection-api
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: SECRET_KEY
@@ -14,6 +14,7 @@ services:
       - key: PYTHON_VERSION
         value: 3.11.0
     plan: free
+    dockerfilePath: ./backend/Dockerfile
 
 databases:
   - name: forest-protection-db
